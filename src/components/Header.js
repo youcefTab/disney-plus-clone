@@ -61,7 +61,7 @@ const Logo = styled.img`
 
 const NavMenu = styled.div`
     display: flex;
-    flex: 1;
+    flex: 1; /** to tell that it's the must important component and have to streach as much as he can */
     margin-left: 25px;
 
     a {
