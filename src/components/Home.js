@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ImageSlider from './ImageSlider'
 import Movies from './Movies'
 import Viewers from './Viewers'
+import db from '../firebase'
+import { collection, doc, onSnapshot, query } from '@firebase/firestore'
 
 function Home() {
+
+    useEffect(() => {
+        const q = query(collection(db, "movies"));
+
+        onSnapshot( collection(db, "movies"), (snapshot) => {
+
+            
+            console.log(snapshot)
+            let tempMovies = snapshot.docs.forEach((doc) => {
+                console.log(doc.data())
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            })
+        })
+
+    }, [])
     return (
         <Container>
             <ImageSlider/>
